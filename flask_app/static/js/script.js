@@ -9,20 +9,20 @@ add_card = document.getElementById('add_card');
 card_form = document.querySelector('.card_form');
 flashcard = document.querySelector('.flashcard');
 memory_score = document.getElementById('memory_score');
-buttons = document.querySelector('.buttons');
+btn_group = document.querySelector('.btn_group');
 try_again = document.querySelector('.try_again');
 
 let wrong_count = 0;
 let correct_count = 0;
 
 let close_btn = `
-    <button  class="btn">
+    <button  class="btn btn-custom">
     <a href="/main_page" class="ps-1"><img src="/static/images/exit2.png" 
     alt="home" style="width: 40px; height: 40px;" data-toggle="tooltip" title="Exit"></a>
     </button>
 `
 let repeat_btn = `
-    <button  class="btn try_again">
+    <button  class="btn btn-custom try_again">
     <a href="" class="pe-1"><img src="/static/images/repeat2.png" 
     alt="home" style="width: 40px; height: 40px;" data-toggle="tooltip" title="Try again"></a>
     </button>
@@ -97,8 +97,8 @@ handle_wrong_check_button =  () => {
             wrong_btn.remove();
         }
 
-        buttons.insertAdjacentHTML('afterbegin', repeat_btn); //afterbegin - Insert a new div as the first child
-        buttons.insertAdjacentHTML('beforeend', close_btn); // beforeend - Insert a new div as the last child
+        btn_group.insertAdjacentHTML('afterbegin', repeat_btn); //afterbegin - Insert a new div as the first child
+        btn_group.insertAdjacentHTML('beforeend', close_btn); // beforeend - Insert a new div as the last child
 
     }
 }

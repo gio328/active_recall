@@ -83,6 +83,8 @@
     height: 400px;
 }
 
-/* .flashcard{
-
-} */
+.btn-custom:focus,
+.btn-custom:focus-visible {
+      outline: 3px solid #0056b3; /* Define a clear, visible outline */
+      outline-offset: 2px; /* Adjust the outline offset for better visibility */
+}
