@@ -4,7 +4,7 @@
 {% block header %}
     <div class="d-flex justify-content-evenly p-3 mt-4 border rounded-2">
         <a href="{{url_for('main_page')}}"><img src="{{ url_for('static', filename='images/home.png') }}" alt="home" style="width: 40px; height: 40px;"></a>
-        <h2>Flash Cards</h2>
+        <h2>Active Recall</h2>
         <div class="dropdown">
             <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Flash Card Sets
@@ -42,14 +42,6 @@
 
 {% block content %}
 
-<ul>
-    {% if session.items() != None %}
-        {% for key, value in session.items() %}
-            <li>{{ key }}: {{ value }}</li>
-        {% endfor %}
-    {% endif %}
-</ul>
-<p>{{flashcard.__dict__}}</p>
 <div class="mt-4">
     <a href="/main_page"><img src="{{ url_for('static', filename='images/close_button.png') }}" alt="close" style="width: 17px; height: 17px;"></a>
     <form action="" method="post" class="mt-2 border formBG rounded-2">
@@ -79,7 +71,7 @@
         </div>
         {% endfor %}
         <div class="d-flex justify-content-center card_form">
-            <button type="button" class="rounded-2 btn btn-outline-secondary" id="add_card">Add</button>
+            <!-- <button type="button" class="rounded-2 btn btn-outline-secondary" id="add_card">Add</button> -->
         </div>
         <div class="text-end p-3">
             <button type="submit" class="rounded-2 btn btn-outline-primary">Update</button>

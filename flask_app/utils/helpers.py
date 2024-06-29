@@ -12,8 +12,11 @@ def login_required(f):
     return decorated_function
 
 def save_data_to_session(data):
-    session['title'] = data.get('title') or ""
-    session['description'] = data.get('network') or ""
-    session['question'] = data.get('release_date') or ""
-    session['answer'] = data.get('comments') or ""
+    # session['title'] = data.get('title') or ""
+    # session['description'] = data.get('network') or ""
+    # session['question'] = data.get('release_date') or ""
+    # session['answer'] = data.get('comments') or ""
+    session['first_name'] = data.get('first_name') or ""
+    session['last_name'] = data.get('last_name') or ""
+    session['email'] = data.get('email') or ""
 

@@ -16,13 +16,13 @@ let wrong_count = 0;
 let correct_count = 0;
 
 let close_btn = `
-    <button  class="btn btn-custom">
+    <button  class="btn btn-custom round-btn">
     <a href="/main_page" class="ps-1"><img src="/static/images/exit2.png" 
     alt="home" style="width: 40px; height: 40px;" data-toggle="tooltip" title="Exit"></a>
     </button>
 `
 let repeat_btn = `
-    <button  class="btn btn-custom try_again">
+    <button  class="btn btn-custom try_again round-btn">
     <a href="" class="pe-1"><img src="/static/images/repeat2.png" 
     alt="home" style="width: 40px; height: 40px;" data-toggle="tooltip" title="Try again"></a>
     </button>
