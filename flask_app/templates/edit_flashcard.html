@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+
+{% block header %}
+    <div class="d-flex justify-content-evenly p-3 mt-4 border rounded-2">
+        <a href="{{url_for('main_page')}}"><img src="{{ url_for('static', filename='images/home.png') }}" alt="home" style="width: 40px; height: 40px;"></a>
+        <h2>Flash Cards</h2>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Flash Card Sets
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Flash Card 1</a></li>
+                <li><a class="dropdown-item" href="#">Flash Card 2</a></li>
+                <li><a class="dropdown-item" href="#">Flash Card 3</a></li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Folders
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Folder 1</a></li>
+                <li><a class="dropdown-item" href="#">Folder 2</a></li>
+                <li><a class="dropdown-item" href="#">Folder 3</a></li>
+            </ul>
+        </div>
+        <form action="/search" method="GET" class="d-flex w-50" style="height: 40px">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+            <button class="btn btn-outline-secondary" type="submit" style="height: 40px">Search</button>
+        </form>
+        <div class="dropdown" id="add">
+            <img src="{{ url_for('static', filename='images/plus.png') }}" alt="Dropdown Trigger" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer; width: 42px; height: 42px;">
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Create Card Set</a></li>
+                <li><a class="dropdown-item" href="#">Create Folder</a></li>
+            </ul>
+        </div>
+        <a href=""><img src="{{ url_for('static', filename='images/user.png') }}" alt="add set or folder" style="width: 44px; height: 44px;"></a>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<ul>
+    {% if session.items() != None %}
+        {% for key, value in session.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    {% endif %}
+</ul>
+<p>{{flashcard.__dict__}}</p>
+<div class="mt-4">
+    <a href="/main_page"><img src="{{ url_for('static', filename='images/close_button.png') }}" alt="close" style="width: 17px; height: 17px;"></a>
+    <form action="" method="post" class="mt-2 border formBG rounded-2">
+        <input type="hidden" name="user_id" value="{{session['loggedin.id']}}">
+        <input type="hidden" name="flashcard_id" value="{{flashcard.id}}">
+        <div class="d-flex justify-content-between">
+            <div class="mb-2 w-50 p-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" value="{{flashcard.title}}" class="form-control" id="title" name="title">
+            </div>
+            <div class="mb-2 w-50 p-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" value="{{flashcard.description}}" class="form-control" id="description" name="description" placeholder="Optional">
+            </div>
+        </div>
+        {% for qa in flashcard.QA %}
+        <div class="d-flex justify-content-between border m-4  rounded-2">
+            <input type="hidden" name="question_answer_id" value="{{qa['id']}}">
+            <div class="mb-2 w-50 p-3">
+                <label for="question" class="form-label">Question</label>
+                <input type="text" value="{{qa['question']}}" class="form-control" id="question" name="question">
+            </div>
+            <div class="mb-2 w-50 p-3">
+                <label for="answer" class="form-label">Answer</label>
+                <input type="text" value="{{qa['answer']}}" class="form-control" id="answer" name="answer">
+            </div>
+        </div>
+        {% endfor %}
+        <div class="d-flex justify-content-center card_form">
+            <button type="button" class="rounded-2 btn btn-outline-secondary" id="add_card">Add</button>
+        </div>
+        <div class="text-end p-3">
+            <button type="submit" class="rounded-2 btn btn-outline-primary">Update</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}

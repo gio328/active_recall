@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center flashcard" style="height: 100vh;">
+        <div class="flip-card animate__animated">
+            <a href="/main_page"><button class="btn" style="padding-left: 0; padding-bottom: 0;"><img src="{{ url_for('static', filename='images/close.png') }}" alt="close" style="width: 44px; height: 44px;"></button></a>
+            <div class="flip-card-inner rounded-2">
+                    <div class="flip-card-front">
+                        <p id="question"></p>
+                    </div>
+                    <div class="flip-card-back ">
+                        <p id="answer"></p>
+                    </div>
+            </div>
+            <div class="d-flex justify-content-center btn buttons">
+                <button class="btn" id="wrong_btn"><img src="{{ url_for('static', filename='images/wrong.png') }}" alt="wrong" style="width: 44px; height: 44px;"></button>
+                <button class="btn" id="correct_btn"><img src="{{ url_for('static', filename='images/check.png') }}" alt="correct" style="width: 45px; height: 45px;"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let flashcardData = JSON.parse('{{ data | tojson | safe }}'); // Convert the data to JSON format and store it in a variable called flashcardData 
+        let flashcard_id = JSON.parse('{{ flashcard_id | tojson | safe }}'); // Convert the flashcard_id to JSON format and store it in a variable called flashcard_id
+    </script>
+
+{% endblock %}

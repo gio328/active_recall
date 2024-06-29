@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block header %}
+    <div class="d-flex justify-content-evenly p-3 mt-4 border rounded-2">
+        <!-- <a href=""><img src="{{ url_for('static', filename='images/home.png') }}" alt="home" style="width: 40px; height: 40px;"></a> -->
+        <h2>Flash Cards</h2>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Flash Card Sets
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Flash Card 1</a></li>
+                <li><a class="dropdown-item" href="#">Flash Card 2</a></li>
+                <li><a class="dropdown-item" href="#">Flash Card 3</a></li>
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Folders
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Folder 1</a></li>
+                <li><a class="dropdown-item" href="#">Folder 2</a></li>
+                <li><a class="dropdown-item" href="#">Folder 3</a></li>
+            </ul>
+        </div>
+        <form action="/search" method="GET" class="d-flex w-50" style="height: 40px">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+            <button class="btn btn-outline-secondary" type="submit" style="height: 40px">Search</button>
+        </form>
+        <div class="dropdown" id="add">
+            <img src="{{ url_for('static', filename='images/plus.png') }}" alt="create" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer; width: 42px; height: 42px;">
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{url_for('new_flashcard')}}">Create Card Set</a></li>
+                <li><a class="dropdown-item" href="#">Create Folder</a></li>
+            </ul>
+        </div>
+        
+        <div class="dropdown" id="user">
+            <img src="{{ url_for('static', filename='images/user.png') }}" alt="user" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer; width: 44px; height: 44px;">
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{{url_for('logout')}}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block content %}
+
+
+<p class="mt-4 custom_header">Recent</p>
+<div class="d-flex justify-content-start">
+    <div class="card m-3" style="width: 18rem;">
+        <div class="d-flex justify-content-end mt-3">
+            <img src="{{ url_for('static', filename='images/edit.png') }}" class="card-img-top hover-effect" alt="edit" style="width: 20px; height: 20px;">
+            <img src="{{ url_for('static', filename='images/delete.png') }}" class="card-img-top ms-3 me-3 hover-effect" alt="delete" style="width: 20px; height: 20px;">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">12 Terms</p>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-outline-secondary" style="padding-right: 8px; padding-bottom: 8px;"><img src="{{ url_for('static', filename='images/play2.png') }}" alt="play" style="width: 20px; height: 20px;"></a>
+            </div>
+        </div>
+    </div>
+    <div class="card m-3" style="width: 18rem;">
+        <div class="d-flex justify-content-end mt-3">
+            <img src="{{ url_for('static', filename='images/edit.png') }}" class="card-img-top hover-effect" alt="edit" style="width: 20px; height: 20px;">
+            <img src="{{ url_for('static', filename='images/delete.png') }}" class="card-img-top ms-3 me-3 hover-effect" alt="delete" style="width: 20px; height: 20px;">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Card title 2</h5>
+            <p class="card-text">13 Terms</p>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-outline-secondary" style="padding-right: 8px; padding-bottom: 8px;"><img src="{{ url_for('static', filename='images/play2.png') }}" alt="play" style="width: 20px; height: 20px;"></a>
+            </div>
+        </div>
+    </div>
+    <div class="card m-3" style="width: 18rem;">
+        <div class="d-flex justify-content-end mt-3">
+            <img src="{{ url_for('static', filename='images/edit.png') }}" class="card-img-top hover-effect" alt="edit" style="width: 20px; height: 20px;">
+            <img src="{{ url_for('static', filename='images/delete.png') }}" class="card-img-top ms-3 me-3 hover-effect" alt="delete" style="width: 20px; height: 20px;">
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Card title 3</h5>
+            <p class="card-text">20 Terms</p>
+            <div class="d-flex justify-content-center">
+                <a href="#" class="btn btn-outline-secondary" style="padding-right: 8px; padding-bottom: 8px;"><img src="{{ url_for('static', filename='images/play2.png') }}" alt="play" style="width: 20px; height: 20px;"></a>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="mt-4 custom_header">All Cards</p>
+<div class="d-flex justify-content-start flex-wrap">
+    {% for flashcard in flashcards %}
+        <div class="card m-3" style="width: 18rem;">
+            <div class="d-flex justify-content-end mt-3">
+                <a href="{{url_for('edit_flashcard',flashcard_id=flashcard.QA[0]['flashcard_id']) }}"><img src="{{ url_for('static', filename='images/edit.png') }}" class="card-img-top hover-effect" alt="edit" style="width: 20px; height: 20px;"></a>
+                <a href="{{url_for('delete_flashcard',flashcard_id=flashcard.QA[0]['flashcard_id'])  }}"><img src="{{ url_for('static', filename='images/delete.png') }}" class="card-img-top ms-3 me-3 hover-effect" alt="delete" style="width: 20px; height: 20px;"></a>
+            </div>
+            <div class="card-body">
+                <!-- <p>{{flashcard.id}}</p> -->
+                <h5 class="card-title">{{flashcard.title}}</h5>
+                <p class="card-text">{{flashcard.QA | length}} Terms</p>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ url_for('flashcard', flashcard_id=flashcard.QA[0]['flashcard_id']) }}" class="btn btn-outline-secondary" style="padding-right: 8px; padding-bottom: 8px;"><img src="{{ url_for('static', filename='images/play3.png') }}" alt="play" style="width: 20px; height: 20px;"></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

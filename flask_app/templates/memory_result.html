@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center flashcard" style="height: 100vh;">
+        <div class="flip-card animate__animated">
+            <div class="memory_score border rounded-2">
+                <div class="mb-4">
+                    <p class="mb-4 fs-5">Memory Score: <span id="memory_score"></span></p>
+                </div>
+                <div class="mt-4">
+                    <a href="{{url_for('flashcard', flashcard_id=flashcard_id)}}" class="pe-4"><img src="{{ url_for('static', filename='images/repeat.png') }}" alt="home" style="width: 40px; height: 40px;" data-toggle="tooltip" title="Try again"></a>
+                    <a href="{{url_for('main_page')}}" class="ps-4"><img src="{{ url_for('static', filename='images/exit.png') }}" alt="home" style="width: 40px; height: 40px;" data-toggle="tooltip" title="Exit"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

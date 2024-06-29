@@ -1,0 +1,88 @@
+.background_color {
+    background-color: #ececee;
+}
+
+.hover-effect:hover {
+    transform: scale(1.3); /* Scales the image to 110% of its original size */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 500px;
+    height: 400px;
+    perspective: 1000px;
+    /* background-color: #2980b9;
+    color: white; */
+}
+
+.flip-card-inner {
+    /* position: relative; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #0d6efd;
+    /* margin-top: 20%; */
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+.rotate {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-card-front {
+    /* background-color: #2980b9; */
+    color: white;
+    /* width: 100%;
+    height: 100%; */
+}
+
+.flip-card-back {
+    /* background-color: #2980b9; */
+    color: white;
+    transform: rotateY(180deg);
+}
+
+#add:hover img, #user:hover img{
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+}
+
+.custom_header {
+    font-size: x-large;
+    margin-bottom: 0px;
+}
+
+.formBG {
+    background-color: #f8f8f8;
+}
+
+#question, #answer {
+    font-size:x-large;
+    padding: 10px;
+}
+
+.memory_score{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 400px;
+}
+
+/* .flashcard{
+
+} */
